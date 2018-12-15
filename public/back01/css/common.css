@@ -1,0 +1,119 @@
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+li{
+    list-style: none;
+}
+ul{
+    padding: 0;
+    margin: 0;
+}
+.lt_aside{
+    width: 180px;
+    height: 100%;
+    background-color: #222D32;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    transition: all 1s;
+}
+.lt_aside.hideMenu{
+    left : -180px;
+}
+.lt_aside .aside_title a{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: #367FA9;
+    line-height: 50px;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+}
+.lt_aside .aside_user{
+    height: 180px;
+    padding-top: 30px;
+}
+.lt_aside .aside_user img{
+    width: 80px;
+    height: 80px;
+    display: block;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.lt_aside .aside_user p{
+    color: #fff;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 18px;
+}
+.lt_aside .aside_nav li a{
+    height: 40px;
+    display: block;
+    padding-left: 40px;
+    color: #fff;
+    line-height: 40px;
+    border-left: 3px solid transparent;
+}
+.aside_nav li a.current{
+    border-left: 3px solid #006699;
+    background-color: #1D1F21;
+}
+.lt_aside .aside_nav i{
+    margin-right: 5px;
+}
+.lt_aside .aside_nav .child a{
+    padding-left: 60px;
+}
+.lt_main{
+    padding-left: 180px;
+    height: 2000px;
+    padding-top: 50px;
+    transition: all 1s;
+}
+.lt_main.hideMenu{
+    padding-left: 0;
+}
+.lt_main .lt_topbar{
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #3C8DBC;
+    height: 50px;
+    padding-left: 180px;
+    transition: all 1s;
+}
+.lt_topbar.hideMenu{
+    padding-left: 0;
+}
+.lt_main .lt_topbar a{
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+}
+
+
+/* 模态框 */
+.modal-body p{
+    color: #A94442;
+}
+
+.breadcrumb{
+    margin-top: 20px;
+}
+
+.echarts_box .echarts_left,
+.echarts_box .echarts_right{
+    width: 48%;
+    height: 400px;
+    /* background-color: skyblue; */
+}

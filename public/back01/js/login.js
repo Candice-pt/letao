@@ -25,6 +25,9 @@ $(function(){
                         min:2,
                         max:6,
                         message:'用户名长度必须在6到30之间'
+                    },
+                    callback:{
+                        message:'用户名错误'
                     }
                 }
             },
@@ -41,24 +44,41 @@ $(function(){
                         min:6,
                         max:12,
                         message:'用户名长度必须在6到30之间'
+                    },
+                    callback:{
+                        message:'密码错误'
                     }
                 }
             }
         }
-
     })
 
-    // 表单校验成功,会触发success.form.bv事件,此时会提交表单
-    // 通常我们需要禁止表单的自动提交,使用ajax进行表单提交
-    $('#form').on('success.form.bv',function(){
-        console.log(11)
+    // 提交表单
+    // 校验成功后执行
+    $('#form').on('success.form.bv',function(e){
+        // 阻止默认跳转
+        e.preventDefault()
+        $.ajax({
+            url :'/employee/employeeLogin',
+            data:$('#form').serialize(),
+            dataType : 'json',
+            type : 'post',
+            success : function(res){
+                if(res.error == 1000){
+                    $('#form').data('bootstrapValidator').updateStatus('username','INVALID','callback')
+                }
+                if(res.error == 1001){
+                    $('#form').data('bootstrapValidator').updateStatus('password','INVALID','callback')
+                }
+                if(res.success){
+                    location.href = 'index.html'
+                }
+            }
+        })
     })
 
-    // 获取validator实例对象
-    var validator = $('#form').data("bootstrapValidator")
-    // 重置按钮
-    $('.reset').on('click',function(){
-        // 重置表单,并且会隐藏所有的错误提示和图标
-        validator.resetForm()
+    // 重置
+    $('[type="reset"]').on('click',function(){
+        $('#form').data('bootstrapValidator').resetForm()
     })
 })
