@@ -117,3 +117,10 @@ ul{
     height: 400px;
     /* background-color: skyblue; */
 }
+
+/* 让表格里的内容居中 */
+.table.table-bordered th,
+.table.table-bordered td{
+    text-align: center;
+    vertical-align: middle;
+}

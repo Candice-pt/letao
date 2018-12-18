@@ -17,6 +17,7 @@ ul {
   color: #A94442;
 }
 
+
 .lt_aside {
   position: fixed;
   left: 0;
@@ -123,4 +124,11 @@ ul {
   width: 48%;
   height: 400px;
   background-color: skyblue;
+}
+
+/* 让表格内容水平垂直居中 */
+.table.table-bordered th,
+.table.table-bordered td {
+  text-align: center;
+  vertical-align: middle;
 }
