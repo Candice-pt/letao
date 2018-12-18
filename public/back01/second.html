@@ -94,6 +94,7 @@
 
                                 </ul>
                             </div>
+                            <input type="hidden" class="category" name="categoryId">
                         </div>
                         <div class="form-group">
                             <input type="text" name='brandName' placeholder="请输入二级分类名称" class="form-control">
@@ -105,16 +106,16 @@
                             <!-- name指定图片上传时的name属性 -->
                             <!-- data-url指定图片上传时的接口地址 -->
                             <!-- multiple指定多文件上传 -->
-                            <input type="file" id='fileupload' name='pic1' style="display:none" data-url='/category/addSecondCategoryPic'
-                                multiple>
+                            <input type="file" id='fileupload' name='pic1' style="display:none" data-url='/category/addSecondCategoryPic'>
                         </div>
                         <div class="form-group">
                             <img src="images/default.png" alt="" style="width:100px" id='formImg'>
+                            <input type="hidden" class="secondImg" name="brandLogo">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" id='cancelBtn' data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-primary" id='logoutBtn'>添加</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">添加</button>
                     </div>
                 </form>
             </div>
@@ -165,7 +166,7 @@
     </script>
     <script type="text/html" id='one'>
         {{each rows v i}}
-        <li><a href="#">{{v.categoryName}}</a></li>
+        <li><a href="#" data-id='{{v.id}}'>{{v.categoryName}}</a></li>
        {{/each}}
     </script>
 </body>

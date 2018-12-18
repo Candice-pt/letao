@@ -30,11 +30,11 @@
         <a href="javascript:;" class="category"><i class="glyphicon glyphicon-list"></i><span>分类管理</span></a>
         <!-- 二级导航 -->
         <div class="child">
-          <a href="first.html">一级分类</a>
+          <a href="first.html" >一级分类</a>
           <a href="second.html">二级分类</a>
         </div>
       </li>
-      <li><a class="current" href="product.html"><i class="glyphicon glyphicon-tags"></i><span>商品管理</span></a></li>
+      <li><a href="product.html"  class="current" ><i class="glyphicon glyphicon-tags"></i><span>商品管理</span></a></li>
     </ul>
   </div>
 </div>
@@ -52,18 +52,110 @@
 
     <ol class="breadcrumb mt_20">
       <li><a href="index.html">管理系统</a></li>
-      <li class="active">首页</li>
+      <li class="active">商品管理</li>
     </ol>
 
-    <!-- Button trigger modal -->
-    <!--
-       data-toggle="modal" 切换模态框
-       data-target="#myModal"  用于指定切换的 具体哪个 模态框, 通过id关联
-    -->
-    <!--<button data-toggle="modal" data-target="#logoutModal">Launch demo modal</button>-->
+    <div class="lt_content">
+
+      <button class="btn btn-default" id="addBtn">添加商品</button>
+
+      <table class="table table-bordered table-hover mt_20">
+        <thead>
+          <tr>
+            <th width="10%">序号</th>
+            <th width="25%">商品名称</th>
+            <th width="25%">商品描述</th>
+            <th width="10%">商品库存</th>
+            <th width="10%">商品尺寸</th>
+            <th width="10%">商品状态</th>
+            <th width="10%">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 挖个坑 -->
+        </tbody>
+      </table>
+
+      <div class="pull-right">
+        <!-- 准备一个 ul -->
+        <ul id="paginator"></ul>
+      </div>
+
+    </div>
 
   </div>
 
+</div>
+
+<!-- 添加模态框  modal-lg大   默认中    modal-sm小  -->
+<div class="modal fade" id="addModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="form">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+          <h4 class="modal-title">添加商品</h4>
+        </div>
+        <div class="modal-body">
+          <!-- 每一行一个 form-group, 表单校验插件依赖于这个 form-group 父元素的 -->
+
+          <div class="form-group">
+            <!-- 下拉列表 -->
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                <span id="dropdownText">请选择二级分类</span>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <!-- 挖个坑 -->
+              </ul>
+            </div>
+            <input type="hidden" name="brandId">
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="proName" class="form-control" placeholder="请输入商品名称">
+          </div>
+          <div class="form-group">
+            <textarea name="proDesc" placeholder="请输入商品描述" class="form-control" cols="30" rows="4"></textarea>
+          </div>
+          <div class="form-group">
+            <input type="text" name="num" class="form-control" placeholder="请输入商品库存">
+          </div>
+          <div class="form-group">
+            <input type="text" name="size" class="form-control" placeholder="请输入商品尺码">
+          </div>
+          <div class="form-group">
+            <input type="text" name="oldPrice" class="form-control" placeholder="请输入商品原价">
+          </div>
+          <div class="form-group">
+            <input type="text" name="price" class="form-control" placeholder="请输入商品现价">
+          </div>
+
+          <div class="form-group">
+            <label class="btn btn-default" for="fileupload">选择图片</label>
+            <!--
+              1. name 图片上传的name, 后台用于接收图片
+              2. data-url  配置文件上传的接口地址
+              3. multiple 可以让 file框, 可以多选文件  (一般用于多文件上传)
+            -->
+            <input multiple type="file" name="pic1" data-url="/product/addProductPic" id="fileupload" style="display: none">
+          </div>
+
+          <div class="form-group" id="imgBox">
+            <!--<img src="./images/none.png" style="width: 100px" alt="">-->
+            <!-- 准备一个隐藏域, 专门用于图片校验 -->
+            <input type="hidden" name="picStatus">
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="submit" class="btn btn-primary">添加</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 
 
@@ -88,14 +180,46 @@
 </div>
 
 
+<script type="text/html" id="productTpl">
+  {{ each rows v i }}
+    <tr>
+      <td>{{ i + 1 + (page-1) * size }}</td>
+      <td>{{ v.proName }}</td>
+      <td>{{ v.proDesc }}</td>
+      <td>{{ v.num }}</td>
+      <td>{{ v.size }}</td>
+      <!-- statu 1表示上架状态  0表示下架状态 -->
+      <td>{{ v.statu === 1 ? "已上架" : "已下架" }}</td>
+      <td>
+        {{ if v.statu === 1 }}
+          <button class="btn btn-danger">下架</button>
+        {{ else }}
+          <button class="btn btn-success">上架</button>
+        {{ /if }}
+      </td>
+    </tr>
+  {{ /each }}
+</script>
+
+<script type="text/html" id="dropdownTpl">
+  {{ each rows v i }}
+    <li><a data-id="{{ v.id }}" href="#">{{ v.brandName }}</a></li>
+  {{ /each }}
+</script>
+
 
 
 <script src="./lib/jquery/jquery.min.js"></script>
+<script src="./lib/jquery-fileupload/jquery.ui.widget.js"></script>
+<script src="./lib/jquery-fileupload/jquery.fileupload.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 <script src="./lib/nprogress/nprogress.js"></script>
+<script src="./lib/artTemplate/template-web.js"></script>
+<script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
 <script src="./js/common.js"></script>
 <script src="./js/isLogin.js"></script>
+<script src="./js/product.js"></script>
 
 
 </body>

@@ -98,6 +98,7 @@
           <!-- 每一行一个 form-group, 表单校验插件依赖于这个 form-group 父元素的 -->
 
           <div class="form-group">
+            <!-- 下拉列表 -->
             <div class="dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
                 <span id="dropdownText">请选择一级分类</span>
@@ -107,6 +108,9 @@
                 <!-- 挖个坑 -->
               </ul>
             </div>
+
+            <!-- 准备一个隐藏域, 专门用于提交数据 -->
+            <input type="hidden" name="categoryId">
           </div>
 
           <div class="form-group">
@@ -124,6 +128,8 @@
 
           <div class="form-group" id="imgBox">
             <img src="./images/none.png" style="width: 100px" alt="">
+            <!-- 准备一个隐藏域, 专门用于提交数据 -->
+            <input type="hidden" name="brandLogo">
           </div>
 
         </div>
@@ -171,7 +177,7 @@
 
 <script type="text/html" id="dropdownTpl">
   {{ each rows v i }}
-    <li><a href="#">{{ v.categoryName }}</a></li>
+    <li><a data-id="{{ v.id }}" href="#">{{ v.categoryName }}</a></li>
   {{ /each }}
 </script>
 
