@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="lib/mui/css/mui.min.css">
+    <link rel="stylesheet" href="lib/fa/css/font-awesome.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/search.css">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="lt_container">
+        <header class="lt_header">
+            <a href="index.html" class="header_left"><i class="mui-icon mui-icon-back"></i></a>
+            <h1>搜索中心</h1>
+        </header>
+        <div class="lt_content">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <div class="lt_search">
+                        <input type="text" placeholder="请输入搜索关键字">
+                        <button class="mui-btn mui-btn-primary btn_search">搜索</button>
+                    </div>
+                    <div class="lt_history">
+                        <!-- 挖坑 -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <footer class="lt_footer">
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-home"></i>
+                        <p>首页</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="category.html">
+                        <i class="fa fa-bars"></i>
+                        <p>分类页</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-shopping-cart"></i>
+                        <p>购物车</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-user"></i>
+                        <p>用户中心</p>
+                    </a>
+                </li>
+            </ul>
+        </footer>
+    </div>
+    <script src="lib/zepto/zepto.min.js"></script>
+    <script src="lib/mui/js/mui.js"></script>
+    <script src="lib/artTemplate/template-web.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/search.js"></script>
+    <script type='text/html' id='historyTpl'>
+        {{if arr.length == 0}}
+        <p>没有更多数据了</p>
+        {{else}}
+        <div class="title mui-clearfix">
+                <span>历史记录</span>
+                <span class='cate_empty'>
+                    <i class="fa fa-trash"></i>
+                    清空记录
+                </span>
+            </div>
+            <div class="content">
+                <ul>
+                    {{each arr v i}}
+                    <li><a href="#" class="mui-pull-left">{{v}}</a><i data-id={{i}} class="mui-icon mui-icon-closeempty btn_delete mui-pull-right"></i></li>
+                    {{/each}}
+                </ul>
+            </div>
+       
+        {{/if}}
+    </script>
+</body>
+
+</html>
