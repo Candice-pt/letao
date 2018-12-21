@@ -1,0 +1,50 @@
+a,
+a:link, 
+a:visited, 
+a:hover, 
+a:active{
+    text-decoration: none;
+    color: #fff;
+}
+h1,h3{
+    margin: 0;
+    padding: 0;
+}
+.lt_container{
+    width: 100%;
+    height: 2000px;
+}
+.lt_aside{
+    width: 180px;
+    height: 100%;
+    background-color:#222D32;
+    float: left;
+}
+.lt_aside .aside_title{
+    height: 50px;
+    text-align: center;
+    background-color: #367FA9;
+}  
+.lt_aside .aside_title h1{
+    line-height: 50px;
+    font-size: 25px;
+}
+.lt_aside .aside_user{
+    height: 180px;
+    width: 100%;
+    padding-top: 30px;
+}
+.lt_aside .aside_user img{
+    margin: 0 auto;
+    display: block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+.lt_aside .aside_user h3{
+ height: 40px;
+ line-height: 40px;
+ text-align: center;  
+ font-size: 18px;
+ color: #fff; 
+}

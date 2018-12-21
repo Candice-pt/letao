@@ -66,7 +66,6 @@ $(function(){
             mui.toast('请输入搜索关键字')
             return;
         }
-        // console.log(value)
         // 取出localStorage中的值,添加value到数组的最前面
         var arr = getHistory()
         // 判断数组中是否已存在该数据
@@ -86,5 +85,8 @@ $(function(){
         render()
         // 清空输入框
         $(this).siblings().val('')
+
+        // 跳转到searchList页面
+        location.href = 'searchList.html?key='+value
     })
 })
