@@ -19,7 +19,6 @@ $(function(){
                 password:password
             },
             success:function(info){
-                console.log(info)
                 if(info.error == 403){
                     mui.toast('用户名或密码不正确')
                     return;
@@ -27,11 +26,10 @@ $(function(){
                 if(info.success){
                     // 如果地址栏后面有参数,跳转到指定地址
                     // 如果地址栏中没有参数跳转到user.html
-                    // indexOf() 可以判断字符串(有就返回1)和数组
-                    if(location.search.indexOf('retUrl')){
+                    // indexOf() 可以判断某个字符在字符串中第一次出现的位置(没有有就返回-1)和数组
+                    if(location.search.indexOf('retUrl') != -1){
                         var url = getSearch('retUrl')
                         url = url.replace('?retUrl=','')
-                        // console.log(url)
                         location.href = url
                     }else{
                         location.href = 'user.html'

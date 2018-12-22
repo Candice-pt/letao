@@ -31,8 +31,13 @@ $(function () {
     // 点击前往购物车
     $('#addCart').on('click',function(){
         // size
-        var size = $('.item_box span.active').text()
+        var size = $('.item_box span.current').text()
         var num = $('.mui-numbox-input').val()
+        // 判断是否选择了尺码
+        if(!size){
+            mui.toast('请选择尺码')
+            return;
+        }
         // 判断是否登录
         $.ajax({
             url:'/cart/addCart',
@@ -46,11 +51,16 @@ $(function () {
             success:function(info){
                 console.log(info)
                 if(info.error == 400){
-                    // location.href = 'login.html?retUrl='+ location.href
+                    // 没有登录
+                    location.href = 'login.html?retUrl='+ location.href
                 }
                 if(info.success){
-                    // 判断是否选择了尺码
-                    
+                    // 添加成功
+                    mui.confirm( "添加成功", "文星提示", ["去购物车", "继续浏览"], function( e ) {
+                        if(e.index == 0){
+                            location.href = 'cart.html'
+                        }
+                    })
                 }
             }
         })
